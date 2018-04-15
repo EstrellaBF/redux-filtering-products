@@ -3,7 +3,7 @@ import React from 'react';
 const ProductCategoryRow = ({ category }) => {
   return (
     <tr>
-      <th>
+      <th colSpan="2">
         {category}
       </th>
     </tr>
@@ -38,18 +38,17 @@ const ProductTable = ({products}) => {
     // Ahora Last Category es Sportings good.
     lastCategory = product.category; 
     // 2do paso: añadir los productos que pertenecen a sportings good que esta en ProductRow
-    rows.push(<ProductRow name = {product.name} price = {product.price}/>)
+    rows.push(<ProductRow key = {product.name} name = {product.name} price = {product.price}/>)
   })
 
   return (
-    // <div>
-    //   {products.map ( product =>  
-    //   <div>
-    //     <ProductCategoryRow {...product} />
-    //     <ProductRow {...product} /></div>
-    //   )}
-    // </div>
     <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
       <tbody>
         {rows}
       </tbody>
