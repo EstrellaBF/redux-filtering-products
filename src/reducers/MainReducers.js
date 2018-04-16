@@ -17,6 +17,8 @@ const INIT_STATE = {
 };
 
 export default (state = INIT_STATE, action) => {
+  // console.log(state = INIT_STATE); //arroja filtered products y original products
+  // console.log(actionTypes.FILTER_TEXT_CHANGED); // FILTER_TEXT_CHANGED
   switch (action.type) {
     case actionTypes.FILTER_TEXT_CHANGED:
       state = {
@@ -37,17 +39,25 @@ export default (state = INIT_STATE, action) => {
     action.type === actionTypes.FILTER_TEXT_CHANGED ||
     action.type === actionTypes.IN_STOCK_ONLY_CHANGED
   ) {
+    // console.log(actionTypes); //{FILTER_TEXT_CHANGED: "FILTER_TEXT_CHANGED", IN_STOCK_ONLY_CHANGED: "IN_STOCK_ONLY_CHANGED"}
+    // console.log(action.type); //IN_STOCK_ONLY_CHANGED o FILTER_TEXT_CHANGED, dependiendo donde se hace click 
     const filteredProducts = state.originalProducts.filter(p => {
+      // console.log(state.originalProducts); // Lanza toda la data
+      // console.log(p); //cada objeto de la data {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"}
       const filterText =
         (action.type === actionTypes.FILTER_TEXT_CHANGED ?
           action.text :
           state.filterText).trim();
-      const inStockOnly =
+          // console.log(action.type); //IN_STOCK_ONLY_CHANGED o FILTER_TEXT_CHANGED
+          // console.log(action.text); // value del input
+          // console.log(state.filterText);  // value del input
+          const inStockOnly =
         action.type === actionTypes.IN_STOCK_ONLY_CHANGED ?
-          action.value :
+        action.value :
           state.inStockOnly
-
-      return (
+          // console.log(action.value); // true o false dependiendo el click 
+          // console.log(state.inStockOnly); // true o false dependiendo el click 
+          return (
         (inStockOnly) ? p.stocked : true &&
           p.name.match(new RegExp(filterText, 'ig'))
       )
@@ -57,6 +67,7 @@ export default (state = INIT_STATE, action) => {
       ...state,
       filteredProducts
     }
+    // console.log(state) //{filteredProducts: Array(4), originalProducts: Array(6), filterText: "", inStockOnly: true}
   }
   return state;
 }
