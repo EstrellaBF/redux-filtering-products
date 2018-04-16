@@ -1,6 +1,9 @@
 import React from 'react';
 
-const SearchBar = ({ filterText, setFilterText }) => (
+const SearchBar = ({ 
+  filterText, setFilterText ,
+  inStockOnly, setInStockOnly
+}) => (
   <form>
     <input
       type="text"
@@ -13,8 +16,9 @@ const SearchBar = ({ filterText, setFilterText }) => (
     <p>
       <input 
         type="checkbox"
+        checked={inStockOnly}
         onChange={evt => {
-          console.log(evt.target)
+          setInStockOnly(evt.target.checked)
         }}
       />
       {' '}

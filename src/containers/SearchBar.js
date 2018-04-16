@@ -1,21 +1,26 @@
 import { connect } from 'react-redux';
 import SearchBarComponent from '../components/SearchBar';
-import { filterTextChanged } from '../actions/action';
+import { filterTextChanged, inStockOnlyChanged } from '../actions/action';
 
 const SearchBarContainer = connect (
   function mapStateToProps(state) {
     const {
-      filtertext
+      filtertext,
+      inStockOnly
     } = state.AppReducer;
 
     return {
-      filtertext
+      filtertext,
+      inStockOnly
     }
   },
   function mapDispatchToProps(dispatch) {
     return {
       setFilterText(newFilterText) {
         dispatch(filterTextChanged(newFilterText));
+      },
+      setInStockOnly(newValue) {
+        dispatch(inStockOnlyChanged(newValue))
       }
     }
   }
