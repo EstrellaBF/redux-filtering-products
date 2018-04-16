@@ -10,14 +10,18 @@ const ProductCategoryRow = ({ category }) => {
   )
 }
 
-const ProductRow = ({ name, price }) => (
-  <tr>
-    <td>{name}</td>
-    <td>{price}</td>
-  </tr>
-)
+const ProductRow = ({ product }) => {
+  const name = product.stocked ? product.name: <span style={{color: 'red'}}>{product.name}</span>
+  const price = product.stocked ? product.price: <span style={{color: 'red'}}>{product.price}</span>
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{price}</td>
+    </tr>
+  )
+}
 
-const ProductTable = ({products}) => {
+const ProductTable = ({ products }) => {
   // console.log(products); // retorna el array de objetos
   // Aquí se tendrá las categorias y los productos
   // 2do paso: Rows ahora tiene ProductCategoryRow
@@ -29,16 +33,16 @@ const ProductTable = ({products}) => {
     // Al mostrarse el primer objeto del array, el product.category es Sportings Goods, y después de 3 veces, es Electronics
     // Al ser True, ya que LastCategory es null, entrará la condición
     // 2do paso: al 2do objeto, como product.category SI es igual a Sportgins goods, entonces pasa a la otra condicion
-    if(product.category !== lastCategory) {
+    if (product.category !== lastCategory) {
 
       // Añado a Rows el product Category con la primera categoría.
-      rows.push(<ProductCategoryRow category = {product.category} key={product.category} />)
+      rows.push(<ProductCategoryRow category={product.category} key={product.category} />)
     }
 
     // Ahora Last Category es Sportings good.
-    lastCategory = product.category; 
+    lastCategory = product.category;
     // 2do paso: añadir los productos que pertenecen a sportings good que esta en ProductRow
-    rows.push(<ProductRow key = {product.name} name = {product.name} price = {product.price}/>)
+    rows.push(<ProductRow key={product.name} product={product}/>)
   })
 
   return (

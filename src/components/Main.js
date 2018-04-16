@@ -8,8 +8,8 @@ const Main = ({ products }) => (
   </div>
 )
 
-// Main.propTypes = {
-//   products: PropTypes.arrayOf(PropTypes.object).isRequired
-// }
+Main.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
 export default Main;

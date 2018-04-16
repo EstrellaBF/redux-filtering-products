@@ -1,10 +1,11 @@
 import React from 'react';
 
-const SearchBar = () => (
+const SearchBar = ({ filterText }) => (
   <form>
     <input
       type="text"
       placeholder="Busca aquí"
+      value = {filterText}
     />
     <p>
       <input 
