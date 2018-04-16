@@ -6,10 +6,16 @@ const SearchBar = ({ filterText }) => (
       type="text"
       placeholder="Busca aquí"
       value = {filterText}
+      onChange={ e => {
+        console.log(e.target.value)
+      }}
     />
     <p>
       <input 
         type="checkbox"
+        onChange={evt => {
+          console.log(evt.target)
+        }}
       />
       {' '}
       Mostrar solo productos en stock
