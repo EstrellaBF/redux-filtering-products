@@ -1,13 +1,13 @@
 import React from 'react';
 
-const SearchBar = ({ filterText }) => (
+const SearchBar = ({ filterText, setFilterText }) => (
   <form>
     <input
       type="text"
       placeholder="Busca aquí"
       value = {filterText}
       onChange={ e => {
-        console.log(e.target.value)
+        setFilterText(e.target.value)
       }}
     />
     <p>

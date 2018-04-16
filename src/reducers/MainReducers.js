@@ -1,3 +1,5 @@
+import { actionTypes } from '../actions/action';
+
 const PRODUCTS = [
   { category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football' },
   { category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball' },
@@ -8,9 +10,37 @@ const PRODUCTS = [
 ];
 
 const INIT_STATE = {
-  filteredProducts: PRODUCTS
+  filteredProducts: PRODUCTS,
+  originalProducts: PRODUCTS,
+  filterText: ''
 };
 
 export default ( state = INIT_STATE, action) => {
+  switch(action.type) {
+    case actionTypes.FILTER_TEXT_CHANGED:
+    state = {
+      ...state,
+      filterText: action.text
+    }
+    break;
+    default:
+      return state;
+  }
+  if (
+    action.type = actionTypes.FILTER_TEXT_CHANGED
+  ) {
+    const filteredProducts = state.originalProducts.filter( p=> {
+      const filterText = 
+        (action.type === actionTypes.FILTER_TEXT_CHANGED ?
+          action.text :
+          state.filterText).trim();
+
+    })
+
+    state = {
+      ...state,
+      filteredProducts
+    }
+  }
   return state;
 }
